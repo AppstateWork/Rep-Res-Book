@@ -20,10 +20,10 @@ library(knitr)
 
 #### Specify working directories. Change as needed. ####
 # Rep-Res-Parent.Rnw  # Alan edited 7/16/15
-ParentDirectory <- "/home/faculty/arnholtat/Rep-Res-Book/Source/"
+ParentDirectory <- "/Users/alan/git_repositories/Rep-Res-Book/Source/"
 
 # README.Rmd  # Alan edited 7/16/15
-SetupDirectory <- "/home/faculty/arnholtat/Rep-Res-Book"
+SetupDirectory <- "/Users/alan/git_repositories/Rep-Res-Book/"
 
 ##### Create PDF Book Manuscript ####
 # Compile the book's parent document

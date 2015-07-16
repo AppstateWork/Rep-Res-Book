@@ -13,7 +13,7 @@ figure/*
 *.lof
 *.log
 *.lot
-*.pdf
+#*.pdf
 *.RData
 .Ristory
 *.tex
