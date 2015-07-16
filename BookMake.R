@@ -2,6 +2,7 @@
 # Make file for the book Reproducible Research with R and RStudio
 # Christopher Gandrud
 # Updated: 30 March 2015
+# Changed: 16 July 2015 ----Alan
 #################
 
 # This R source code compiles the manuscript for the book Reproducible Research 
@@ -18,11 +19,11 @@
 library(knitr)
 
 #### Specify working directories. Change as needed. ####
-# Rep-Res-Parent.Rnw
-ParentDirectory <- "/git_repositories/Rep-Res-Book/Source/"
+# Rep-Res-Parent.Rnw  # Alan edited 7/16/15
+ParentDirectory <- "/home/faculty/arnholtat/Rep-Res-Book/Source/"
 
-# README.Rmd
-SetupDirectory <- "/git_repositories/Rep-Res-Book/"
+# README.Rmd  # Alan edited 7/16/15
+SetupDirectory <- "/home/faculty/arnholtat/Rep-Res-Book"
 
 ##### Create PDF Book Manuscript ####
 # Compile the book's parent document
