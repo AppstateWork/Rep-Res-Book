@@ -13,7 +13,7 @@ When you have your data cleaned and organized you will begin to examine it with 
 
 You can dynamically tie your data gathering, statistical analyses, and presentation documents together with \emph{knitr}/\emph{rmarkdown}. In Chapter \ref{GettingStartedRKnitr} you learned basic \emph{knitr}/\emph{rmarkdown} syntax. For the rest of the chapter I'll simply refer to it as ``\emph{knitr} syntax'', but it applies to \emph{rmarkdown} as well.  In this chapter we will begin to learn \emph{knitr} syntax in more detail, particularly code chunk options for including dynamic code in your presentation documents. This includes code that is run in the background, i.e. not shown in the presentation document, as well as displaying the code and output in your presentation document both as separate blocks and inline with the text. We will also learn how to dynamically include code from languages other than R. We examine how to use \emph{knitr} with modular source code files. Finally, we will look at how to create reproducible `random' analyses and how to work with computationally intensive code chunks.
 
-The goal of this and the next two chapters--which cover dynamically presenting results in tables and figures--is to show you how to tie data gathering and analyses into your presentation documents so closely that every time the documents are compiled they actually reproduce your analysis and present the results. Please see the next part of this book, Part IV, for details on how to create the LaTeX and Markdown documents that can include \emph{knitr} code chunks.
+The goal of this and the next two chapters--which cover dynamically presenting results in tables and figures--is to show you how to tie data gathering and analyses into your presentation documents so closely that every time the documents are compiled they actually reproduce your analysis and present the results. Please see the next part of this book, Part IV, for details on how to create the \LaTeX{} and Markdown documents that can include \emph{knitr} code chunks.
 
 \textbf{Reminder:} Before discussing the details of how to incorporate your analysis into your source code, it's important to reiterate something we discussed in Chapter \ref{GettingStartedRR}. The syntax and capabilities of R packages and R itself can change with new versions. Also, as we have seen for file path names, syntax can change depending on what operating system you are using.  So it is important to have your R session info available (see Section \ref{SessionInfoHow} for details) to make your research more reproducible and future-proof. If someone reproducing your research has this information, they will be able to download your files and use the exact version of the software that you used. For example, CRAN\index{CRAN archive} maintains an archive of previous R package versions that can be downloaded.\footnote{See: \url{http://cran.r-project.org/src/contrib/Archive/}.} Previous versions of R itself can also be downloaded through CRAN.\footnote{See: \url{http://cran.r-project.org/src/base/}.}
 
@@ -39,7 +39,7 @@ If you would like to hide a chunk's code from the presentation document you can 
 
 \paragraph{{\tt{results}}}\index{knitr option!results}
 
-We will look at the \texttt{results} option in more detail in the next two chapters (see especially Section \ref{ResultsOptions}). However, let's briefly discuss the option value \texttt{hide}. Setting \verb|results='hide'| is almost the opposite of \texttt{echo=FASLE}. Instead of showing the results of the code chunk and hiding the code, \texttt{results='hide'} shows the code, but not the results. Warnings, errors, and messages will still be printed.
+We will look at the \texttt{results} option in more detail in the next two chapters (see especially Section \ref{ResultsOptions}). However, let's briefly discuss the option value \texttt{hide}. Setting \verb|results='hide'| is almost the opposite of \texttt{echo=FALSE}. Instead of showing the results of the code chunk and hiding the code, \verb|results='hide'| shows the code, but not the results. Warnings, errors, and messages will still be printed.
 
 \paragraph{{\tt{warning}}, {\tt{message}}, {\tt{error}}}\index{knitr option!warning}\index{knitr option!error}\index{knitr option!message}
 
@@ -58,7 +58,7 @@ Cached chunks are only rerun when their code changes. Sometimes one chunk will d
 Sometimes to ensure reproducibility it may be useful to rerun a chunk when some other condition changes, such as when a new version of R is installed or a dependent file changes. You can feed a list of conditions to \texttt{cache.extra} to do this. For instance:
 
 <<Ch8CacheExtra, eval=FALSE, echo=TRUE>>=
-cache.extra=list(file.info(Data.csv)$mtime, R.version
+cache.extra=list(file.info(Data.csv)$mtime, R.version)
 @
 
 \noindent Here we set two conditions under which the chunk will be rerun. The first specifies that the chunk should be rerun whenever the \emph{Data.csv} file is modified. The \texttt{file.info} function extracts information about the file and \texttt{mtime} gives the last time that the file was modified. If this differs from when the chunk was last run, then it will be run again. This is very useful for keeping your cached chunks and the files they rely on in sync.
@@ -67,23 +67,23 @@ The second condition enabled by \texttt{R.version}\index{R function!R.version} r
 
 \paragraph{{\tt{size}}}\index{knitr option!size}
 
-If you do want to print part or all of your code chunk into your LaTeX document, you may also want to resize the text. To do this, use the \texttt{size} option. By default it is set to \verb|size='normalsize'|. You can use any of the LaTeX font sizes listed in Table \ref{LaTeXFontSize} from Chapter \ref{LatexChapter}.
+If you do want to print part or all of your code chunk into your \LaTeX{} document, you may also want to resize the text. To do this, use the \texttt{size} option. By default it is set to \verb|size='normalsize'|. You can use any of the \LaTeX{} font sizes listed in Table \ref{LaTeXFontSize} from Chapter \ref{LatexChapter}.
 
 \index{knitr!code chunk option|)}
 
 \subsection{Showing code \& results inline}\index{inline}
 
-Sometimes you may want to have R code or output show up inline with the rest of your presentation document's text. For example, you may want to include a small chunk of stylized code in your text when you discuss how you did an analysis. Or you may want to dynamically report the mean of some variable in your text so that the text will change when you change the data. The {\emph{knitr}} syntax for including inline code is different for the LaTeX and Markdown languages. We'll cover both in turn.
+Sometimes you may want to have R code or output show up inline with the rest of your presentation document's text. For example, you may want to include a small chunk of stylized code in your text when you discuss how you did an analysis. Or you may want to dynamically report the mean of some variable in your text so that the text will change when you change the data. The {\emph{knitr}} syntax for including inline code is different for the \LaTeX{} and Markdown languages. We'll cover both in turn.
 
-\subsubsection{LaTeX}
+\subsubsection{\LaTeX{}}
 
 \paragraph{Inline static code}
 
-There are a number of ways to include a code snippet inline with your text in LaTeX. You can simply use the LaTeX command \verb|\texttt| to have text show up in the \texttt{typewriter} font\index{texttt} commonly used in LaTeX-produced documents to indicate that some text is code (I use typewriter font for this purpose in this book, as you have probably noticed). For example, using \verb|\texttt{2 + 2}| will give you \texttt{2 + 2} in your text. Note that in LaTeX curly brackets (\verb|{}|) work exactly like parentheses in R, i.e. they enclose a command's arguments.
+There are a number of ways to include a code snippet inline with your text in \LaTeX{}. You can simply use the \LaTeX{} command \verb|\texttt| to have text show up in the \texttt{typewriter} font\index{texttt} commonly used in \LaTeX{}-produced documents to indicate that some text is code (I use typewriter font for this purpose in this book, as you have probably noticed). For example, using \verb|\texttt{2 + 2}| will give you \texttt{2 + 2} in your text. Note that in \LaTeX{} curly brackets (\verb|{}|) work exactly like parentheses in R, i.e. they enclose a command's arguments.
 
-However, the \verb|\texttt| command isn't always ideal, because your LaTeX compiler\index{compiler} will still try to run the code inside of the command as if it were LaTeX markup. This can be problematic if you include characters like the backslash \verb|\| or curly brackets \verb|{}|. They have special meanings for LaTeX. The hard way to solve this problem is to use escape characters\index{escape character} (see Chapter \ref{DirectoriesChapter}). The backslash is an escape character in LaTeX.
+However, the \verb|\texttt| command isn't always ideal, because your \LaTeX{} compiler\index{compiler} will still try to run the code inside of the command as if it were \LaTeX{} markup. This can be problematic if you include characters like the backslash \verb|\| or curly brackets \verb|{}|. They have special meanings for \LaTeX{}. The hard way to solve this problem is to use escape characters\index{escape character} (see Chapter \ref{DirectoriesChapter}). The backslash is an escape character in \LaTeX{}.
 
-Probably the better option is to use the \verb|\verb| command\index{LaTeX command!verb}. It is equivalent to the \texttt{eval=FALSE} option for full {\emph{knitr}} code chunks. To use the \verb|\verb| command, pick some character you will not use in the inline code. For example, you could use the vertical bar (\texttt{|}). This will be the \verb|\verb| delimiter. Imagine that we want to actually include `\verb|\texttt|' in the text. We would type:
+Probably the better option is to use the \verb|\verb| command\index{LaTeX@\LaTeX{} command!verb}. It is equivalent to the \texttt{eval=FALSE} option for full {\emph{knitr}} code chunks. To use the \verb|\verb| command, pick some character you will not use in the inline code. For example, you could use the vertical bar (\texttt{|}). This will be the \verb|\verb| delimiter. Imagine that we want to actually include `\verb|\texttt|' in the text. We would type:
 
 \begin{knitrout}
     \definecolor{shadecolor}{rgb}{1, 1, 1}
@@ -95,11 +95,11 @@ Probably the better option is to use the \verb|\verb| command\index{LaTeX comman
         \end{kframe}
 \end{knitrout}
 
-\noindent The LaTeX compiler will ignore almost anything from the first vertical bar up until the second bar following \verb|\verb|. All of the text in-between the delimiter characters is put in typewriter font.\footnote{For more details see the LaTeX Wikibooks page: \url{http://en.wikibooks.org/wiki/LaTeX/Paragraph_Formatting#Verbatim_Text} (accessed 24 November 2012). Also, for help troubleshooting see the UK List of Frequently Asked Questions: \url{http://www.tex.ac.uk/cgi-bin/texfaq2html?label=verbwithin} (accessed 4 January 2012).}
+\noindent The \LaTeX{} compiler will ignore almost anything from the first vertical bar up until the second bar following \verb|\verb|. All of the text in-between the delimiter characters is put in typewriter font.\footnote{For more details see the \LaTeX{} Wikibooks page: \url{http://en.wikibooks.org/wiki/LaTeX/Paragraph_Formatting#Verbatim_Text} (accessed 24 November 2012). Also, for help troubleshooting see the UK List of Frequently Asked Questions: \url{http://www.tex.ac.uk/cgi-bin/texfaq2html?label=verbwithin} (accessed 4 January 2012).}
 
 \paragraph{Inline dynamic code}
 
-If you want to dynamically show the results of some R code in your \emph{knitr} LaTeX-produced text you can use \verb|\Sexpr|\index{Sexpr}.\index{knitr!Sexpr} This is a pseudo LaTeX command; it looks like LaTeX, but is actually {\emph{knitr}}.\footnote{The command directly descends from \emph{Sweave}.} Its structure is more like a LaTeX command's structure than {\emph{knitr}}'s in that you enclose your R code in curly brackets (\texttt{\{\}}) rather than the \verb|<<>>= . . . @| syntax you use for block code chunks.
+If you want to dynamically show the results of some R code in your \emph{knitr} \LaTeX{}-produced text you can use \verb|\Sexpr|\index{Sexpr}.\index{knitr!Sexpr} This is a pseudo \LaTeX{} command; it looks like \LaTeX{}, but is actually {\emph{knitr}}.\footnote{The command directly descends from \emph{Sweave}.} Its structure is more like a \LaTeX{} command's structure than {\emph{knitr}}'s in that you enclose your R code in curly brackets (\texttt{\{\}}) rather than the \verb|<<>>= . . . @| syntax you use for block code chunks.
 
 For example, imagine that you wanted to include the mean of a vector of river lengths--\Sexpr{round(mean(rivers), digits = 0)}--in the text of your document. The {\emph{rivers}} numeric vector, loaded by default in R, has the lengths of 141 major rivers recorded in miles. You can simply use the \texttt{mean}\index{R function!mean} command to find the mean and the \texttt{round}\index{R function!round} command to round the result to the nearest whole number:
 

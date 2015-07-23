@@ -55,7 +55,7 @@ Number <- 10
 Number
 @
 
-\noindent Let's briefly breakdown this output. \texttt{10} is clearly the contents of {\emph{Number}}. The double hash (\texttt{\#\#}) is included here to tell you that this is output rather than R code.\footnote{The double hash is generated automatically by {\emph{knitr}}. They make it easier to copy and paste code into R from a document created by {\emph{knitr}} because R will ignore everything after a hash.} If you type the commands in your R console, you will not get the double hash in your output. Finally, \texttt{[1]} is the row number of the object that 10 is on. Clearly our object only has one row.
+\noindent Let's briefly breakdown this output. \texttt{10} is clearly the contents of {\emph{Number}}. The double hash (\texttt{\#\#}) is included here to tell you that this is output rather than R code.\footnote{The double hash is generated automatically by {\emph{knitr}}. They make it easier to copy and paste code into R from a document created by {\emph{knitr}} because R will ignore everything after a hash.} If you type the commands in your R console, you will not get the double hash in your output. Finally, \texttt{[1]} is the index number of the object that 10 is on. Clearly our object only has one entry.
 
 Creating an object with words and other characters--a character object--is very similar. The only difference is that you enclose the character string\index{R!character strings} (letters in a word for example) inside of single or double quotation\index{R!quotation marks} marks (\verb|''|, or \verb|""|).\footnote{Single and double quotation marks are interchangeable in R for this purpose. In this book I always use double quotes, except for \emph{knitr} code chunk options.} To create an object called \emph{Words} that contains the character string ``Hello World'':\label{StringObject}
 
@@ -151,7 +151,7 @@ mean(StringNumObject$ChacterVect)
 
 The last bit of code we just saw will probably be confusing. Why do we have a dollar sign (\texttt{\$}) between the name of our data frame object name and the \textbf{CharacterVect} variable? The dollar sign is called the component selector.\index{R!component selector}\index{R!\$, component selector}\footnote{It's also sometimes called the element name operator.} It basically extracts a part--component--of an object. In the previous example it extracted the \textbf{CharacterVect} column from the {\emph{StringNumObject}} and fed it to the \texttt{mean} command, which tried (in this case unsuccessfully) to find its mean.
 
-We can Of course, use the component selector to create new objects with parts of other objects. Imagine that we have the {\emph{StringNumObject}} and want an object with only the information in the numbers column. Let's use the following code:
+We can, of course, use the component selector to create new objects with parts of other objects. Imagine that we have the {\emph{StringNumObject}} and want an object with only the information in the numbers column. Let's use the following code:
 
 <<Ch3CompSelect, echo=TRUE>>=
 NewNumeric <- StringNumObject$NumericVect
@@ -268,7 +268,7 @@ To find all of the arguments that a command can accept, look at the {\bf{Argumen
 
 \noindent The help file\index{R!help file} will also tell you the default values that the arguments are set to. Clearly, you do not need to explicitly set an argument if you want to use its default value.
 
-You do have to be fairly precise with the syntax for your argument's values. Values for logical arguments\index{logical}\index{R!logical values} must written as \texttt{TRUE} or \texttt{FALSE}.\footnote{They can be abbreviated \texttt{T} and \texttt{F}.} Arguments that accept character strings require quotation marks.
+You do have to be fairly precise with the syntax for your argument's values. Values for logical arguments\index{logical}\index{R!logical values} must be written as \texttt{TRUE} or \texttt{FALSE}.\footnote{They can be abbreviated \texttt{T} and \texttt{F}.} Arguments that accept character strings require quotation marks.
 
 Let's see how to use multiple arguments with the \texttt{round} command.\index{R function!round} This command rounds a vector of numbers. We can use the \texttt{digits}\index{R!digits} argument to specify how many decimal places we want the numbers rounded to. To round the object \emph{MeanNumericVect} to one decimal place type:
 
@@ -424,7 +424,7 @@ R source code files have the file extension \texttt{.R}. When you create a new s
         \vspace{0.5cm}
 
         \begin{subfigure}
-            \caption{R LaTeX Files}
+            \caption{R \LaTeX{} Files}
             \label{fig:RLaTeX}
             \includegraphics[width = \textwidth]{Children/Chapter3/images3/LaTeXSourceBar.png}
         \end{subfigure}
@@ -459,7 +459,7 @@ The \emph{rmarkdown} package implements a variation on this process that utilize
 
 \index{rmarkdown!header |(}
 
-The header is written in YAML\index{YAML}.\footnote{YAML is a recursive acronym that means ``YAML Ain't Markup Language''.} The YAML header can include information such as the document's title, author, whether or not to include a table of contents, and a link to a BibTeX bibliography file. YAML is a straightforward data format that organizes information in a simple hierarchy. The header begins and ends with three dashes (\verb|---|). Information keys--like ``title'' and ``author''--are separated from their associated ``values'' by a colon (\texttt{:}). Sub-values of a hierarchy are denoted by being placed on a new line and indented.\footnote{It doesn't matter how many spaces you use to indent, as long as all indentations have the same number of spaces.} Here is a basic \emph{rmarkdown} header that indicates the document's title, author, date, and that it will be turned into a PDF document (via LaTeX).
+The header is written in YAML\index{YAML}.\footnote{YAML is a recursive acronym that means ``YAML Ain't Markup Language''.} The YAML header can include information such as the document's title, author, whether or not to include a table of contents, and a link to a Bib\TeX{} bibliography file. YAML is a straightforward data format that organizes information in a simple hierarchy. The header begins and ends with three dashes (\verb|---|). Information keys--like ``title'' and ``author''--are separated from their associated ``values'' by a colon (\texttt{:}). Sub-values of a hierarchy are denoted by being placed on a new line and indented.\footnote{It doesn't matter how many spaces you use to indent, as long as all indentations have the same number of spaces.} Here is a basic \emph{rmarkdown} header that indicates the document's title, author, date, and that it will be turned into a PDF document (via \LaTeX{}).
 
 \begin{knitrout}
     \definecolor{shadecolor}{rgb}{1, 1, 1}
@@ -496,11 +496,11 @@ In addition to the header, \emph{rmarkdown} differs from \emph{knitr} in that yo
 
 \subsection{File extensions}
 
-When you save a knittable file, use a file extension that indicates (a) that it is knittable and (b) what markup language it is using. You can use a number of file extensions for R Markdown files including: \texttt{.Rmd} and \texttt{.Rmarkdown}.\footnote{R Markdown files that you compile with \emph{knitr} or \emph{rmarkdown} have the same \texttt{.Rmd} file extension.} LaTeX documents that include {\emph{knitr}} code chunks are generally called R Sweave\index{R Sweave}\index{Sweave} files and have the file extension {\tt{.Rnw}}. This terminology is a little confusing. It is a holdover from {\emph{knitr}}'s main literate programming predecessor {\emph{Sweave}}. You can also use the less confusing file extension \texttt{.Rtex}, as regular LaTeX files have the extension \texttt{.tex}. However, the syntax for \texttt{.Rtex} files is different from that used with \texttt{.Rnw} files. We'll look at this issue in more detail below.
+When you save a knittable file, use a file extension that indicates (a) that it is knittable and (b) what markup language it is using. You can use a number of file extensions for R Markdown files including: \texttt{.Rmd} and \texttt{.Rmarkdown}.\footnote{R Markdown files that you compile with \emph{knitr} or \emph{rmarkdown} have the same \texttt{.Rmd} file extension.} \LaTeX{} documents that include {\emph{knitr}} code chunks are generally called R Sweave\index{R Sweave}\index{Sweave} files and have the file extension {\tt{.Rnw}}. This terminology is a little confusing. It is a holdover from {\emph{knitr}}'s main literate programming predecessor {\emph{Sweave}}. You can also use the less confusing file extension \texttt{.Rtex}, as regular \LaTeX{} files have the extension \texttt{.tex}. However, the syntax for \texttt{.Rtex} files is different from that used with \texttt{.Rnw} files. We'll look at this issue in more detail below.
 
 \subsection{Code chunks}
 
-When you want to include R code into your markup presentation documents, place them in a code chunk\index{code chunk}\index{knitr!code chunk}. Code chunk syntax differs depending on the markup language we are using to write our documents. Let's see the syntax for R Markdown and R LaTeX files. If you are unfamiliar with basic LaTeX or Markdown syntax you might want to skim chapters \ref{LatexChapter} and \ref{MarkdownChapter} to familiarize yourself with it before reading this section.
+When you want to include R code into your markup presentation documents, place them in a code chunk\index{code chunk}\index{knitr!code chunk}. Code chunk syntax differs depending on the markup language we are using to write our documents. Let's see the syntax for R Markdown and R \LaTeX{} files. If you are unfamiliar with basic \LaTeX{} or Markdown syntax you might want to skim chapters \ref{LatexChapter} and \ref{MarkdownChapter} to familiarize yourself with it before reading this section.
 
 \paragraph{R Markdown}\label{RMarkdownChunkBasic}
 
@@ -515,9 +515,9 @@ StringNumObject <- cbind(CharacterVect, NumericVect)
 
 \noindent The R Markdown code chunk syntax is exactly the same for files you compile with \emph{knitr} or \emph{rmarkdown}.
 
-\paragraph{R LaTeX}
+\paragraph{R \LaTeX{}}
 
-There are two different ways to delimit code chunks in R LaTeX documents. One way largely emulates the established {\emph{Sweave}} syntax.\footnote{The syntax has its genesis in a literate programming tool called noweb \cite[]{Leisch2002,RamseyNoweb}.} {\emph{knitr}} also supports files with the {\tt{.Rtex}} extension, though the code chunk syntax is different. I will cover both types of syntax for code chunks in LaTeX documents. Throughout the book I use the older and more established Sweave-style syntax. \\[0.25cm]
+There are two different ways to delimit code chunks in R \LaTeX{} documents. One way largely emulates the established {\emph{Sweave}} syntax.\footnote{The syntax has its genesis in a literate programming tool called noweb \cite[]{Leisch2002,RamseyNoweb}.} {\emph{knitr}} also supports files with the {\tt{.Rtex}} extension, though the code chunk syntax is different. I will cover both types of syntax for code chunks in \LaTeX{} documents. Throughout the book I use the older and more established Sweave-style syntax. \\[0.25cm]
 
 \noindent {\bf{Sweave-style}} \\[0.25cm]
 
@@ -564,7 +564,7 @@ To explicitly assign chunk labels in R Markdown documents, place the label name 
 ```
 @
 
-\noindent The same general format applies to the two types of LaTeX chunks. In Sweave-style chunks we type: \texttt{\textless\textless ChunkLabel\textgreater\textgreater=}. In Rtex-style we use: \texttt{\%\% begin.rcode ChunkLabel}. Try not to use spaces or periods in your label names. Also remember that chunk labels {\emph{must}} be unique.
+\noindent The same general format applies to the two types of \LaTeX{} chunks. In Sweave-style chunks we type: \texttt{\textless\textless ChunkLabel\textgreater\textgreater=}. In Rtex-style we use: \texttt{\%\% begin.rcode ChunkLabel}. Try not to use spaces or periods in your label names. Also remember that chunk labels {\emph{must}} be unique.
 
 \paragraph{Code chunk options}\index{knitr!code chunk option|(}
 
@@ -629,7 +629,7 @@ Throughout this book we will look at a number of different code chunk options. M
 
 So far we have only looked at how to set local options in {\emph{knitr}} code chunks, i.e. options for only one specific chunk. If we want an option to apply to all of the chunks in our document we can set global chunk options. Options are `global' in the sense that they apply to the entire document. Setting global chunk options helps us create documents that are formatted consistently without having to repetitively specify the same option every time we create a new code chunk. For example, in this book I center almost all of the figures. Instead of using the \verb|fig.align='center'| option in each code chunk that creates a figure, I set the option globally.
 
-To set a global option, first create a new code chunk at the beginning of your document.\footnote{In Markdown, you can put global chunk options at the very top of the document. In LaTeX they should be placed after the \texttt{\textbackslash{}begin\{document\}} command (see Chapter \ref{LatexChapter} for more information on how LaTeX documents are structured).} You will probably want to set the option {\tt{include=FALSE}} so that {\emph{knitr}} doesn't include the code in your presentation document. Inside the code chunk use {\tt{opts\_chunk\$set}}. You can set any chunk option as an argument to {\tt{opts\_chunk\$set}}. The option will be applied across your document, unless you set a different local option.
+To set a global option, first create a new code chunk at the beginning of your document.\footnote{In Markdown, you can put global chunk options at the very top of the document. In \LaTeX{} they should be placed after the \texttt{\textbackslash{}begin\{document\}} command (see Chapter \ref{LatexChapter} for more information on how \LaTeX{} documents are structured).} You will probably want to set the option {\tt{include=FALSE}} so that {\emph{knitr}} doesn't include the code in your presentation document. Inside the code chunk use {\tt{opts\_chunk\$set}}. You can set any chunk option as an argument to {\tt{opts\_chunk\$set}}. The option will be applied across your document, unless you set a different local option.
 
 Here is an example of how you can center align all of the figures in Sweave-style code chunks. Place the following code at the beginning of the document:
 
@@ -678,7 +678,7 @@ You can also set hooks\index{knitr!hook}. Hooks come in two types: chunk hooks a
 %%%%%%%%%% Knitr, rmarkdown, & RStudio
 \subsection{\emph{knitr}, \emph{rmarkdown}, \& RStudio}
 
-RStudio is highly integrated with {\emph{knitr}}/\emph{rmarkdown} and the markup languages that they work with. Because of this integration it is easier to create and compile {\emph{knitr}}/\emph{rmarkdown} documents in RStudio than plain R. Most of the RStudio/{\emph{knitr}}/\emph{rmarkdown} features are accessed in the \emph{Source} pane\index{RStudio!Source pane}. The \emph{Source} pane's appearance and capabilities change depending on the type of file you have open in it. RStudio uses a file's extension\index{file extension} and, if it is an \emph{rmarkdown} document, its header, to determine what type of file you have open.\footnote{You can manually set how you want the \emph{Source} pane to act by selecting the file type using the drop-down menu in the lower right-hand corner of the \emph{Source} pane.} We have already seen some of the features the \emph{Source} pane has for R source code files. Let's now look at how to use {\emph{knitr}} and \emph{rmarkdown} with R source code files as well as the markup formats we cover in this book: R Markdown\index{R Markdown} and R LaTeX\index{R LaTeX}. \\[0.25cm]
+RStudio is highly integrated with {\emph{knitr}}/\emph{rmarkdown} and the markup languages that they work with. Because of this integration it is easier to create and compile {\emph{knitr}}/\emph{rmarkdown} documents in RStudio than plain R. Most of the RStudio/{\emph{knitr}}/\emph{rmarkdown} features are accessed in the \emph{Source} pane\index{RStudio!Source pane}. The \emph{Source} pane's appearance and capabilities change depending on the type of file you have open in it. RStudio uses a file's extension\index{file extension} and, if it is an \emph{rmarkdown} document, its header, to determine what type of file you have open.\footnote{You can manually set how you want the \emph{Source} pane to act by selecting the file type using the drop-down menu in the lower right-hand corner of the \emph{Source} pane.} We have already seen some of the features the \emph{Source} pane has for R source code files. Let's now look at how to use {\emph{knitr}} and \emph{rmarkdown} with R source code files as well as the markup formats we cover in this book: R Markdown\index{R Markdown} and R \LaTeX{}\index{R \LaTeX{}}. \\[0.25cm]
 
 \paragraph{Compiling R source code Notebooks}
 
@@ -723,16 +723,16 @@ You may also notice that there are code folding arrows on lines 27 and 34 in the
     \end{subfigure}
 \end{figure}
 
-\paragraph{R LaTeX}
+\paragraph{R \LaTeX{}}
 
-You can see in the final image in Figure \ref{SourcePanes} that many of the \emph{Source} pane options for R LaTeX files are the same as R Markdown files, the key differences being that there is a \texttt{Compile PDF} icon (\includegraphics[scale=0.5]{Children/Chapter3/images3/CompilePDF.png}) instead of \texttt{Knit HTML}. Clicking this icon knits the file and creates a PDF file in your R LaTeX file's directory. There is also a \texttt{Format} icon instead of the question mark icon. This actually inserts LaTeX formatting commands into your document for things such as section headings and bullet lists. These commands can be very tedious to type out by hand otherwise.
+You can see in the final image in Figure \ref{SourcePanes} that many of the \emph{Source} pane options for R \LaTeX{} files are the same as R Markdown files, the key differences being that there is a \texttt{Compile PDF} icon (\includegraphics[scale=0.5]{Children/Chapter3/images3/CompilePDF.png}) instead of \texttt{Knit HTML}. Clicking this icon knits the file and creates a PDF file in your R \LaTeX{} file's directory. There is also a \texttt{Format} icon instead of the question mark icon. This actually inserts \LaTeX{} formatting commands into your document for things such as section headings and bullet lists. These commands can be very tedious to type out by hand otherwise.
 
 
 \paragraph{Change default .Rnw knitter}
 
-By default RStudio may be set up to use \emph{Sweave}\index{Sweave} for compiling LaTeX documents. To use {\emph{knitr}} instead of \emph{Sweave} to knit \texttt{.Rnw} files you should click on \texttt{Tools} in the RStudio menu bar then click on \texttt{Global Options...}.\index{RStudio!Options window} Once the {\bf{Options}} window opens, click on the \texttt{Sweave} button. Select \texttt{knitr} from the drop-down menu for ``Weave Rnw files using:''. Finally, click \texttt{Apply}.\footnote{In the Mac version of RStudio, you can also access the \texttt{Options} window via \texttt{RStudio} \textrightarrow\: \texttt{Preferences} in the menu bar.}
+By default RStudio may be set up to use \emph{Sweave}\index{Sweave} for compiling \LaTeX{} documents. To use {\emph{knitr}} instead of \emph{Sweave} to knit \texttt{.Rnw} files you should click on \texttt{Tools} in the RStudio menu bar then click on \texttt{Global Options...}.\index{RStudio!Options window} Once the {\bf{Options}} window opens, click on the \texttt{Sweave} button. Select \texttt{knitr} from the drop-down menu for ``Weave Rnw files using:''. Finally, click \texttt{Apply}.\footnote{In the Mac version of RStudio, you can also access the \texttt{Options} window via \texttt{RStudio} \textrightarrow\: \texttt{Preferences} in the menu bar.}
 
-In the \texttt{Sweave} options menu you can also set which LaTeX typesetting engine to use. By default it is set to the more established engine pdfLaTeX.\index{pdfLaTeX} Another option is XeLaTeX.\index{XeLaTeX} XeLaTeX has the ability to use many more characters than pdfLaTeX as it works with UTF-8\index{UTF-8} encoded input. It can also use any font on your computer. XeLaTeX is especially useful compared to pdfLaTeX if you are using characters that are not found in standard English.
+In the \texttt{Sweave} options menu you can also set which \LaTeX{} typesetting engine to use. By default it is set to the more established engine pdf\LaTeX{}.\index{pdf\LaTeX{}} Another option is Xe\LaTeX{}.\index{Xe\LaTeX{}} Xe\LaTeX{} has the ability to use many more characters than pdf\LaTeX{} as it works with UTF-8\index{UTF-8} encoded input. It can also use any font on your computer. Xe\LaTeX{} is especially useful compared to pdf\LaTeX{} if you are using characters that are not found in standard English.
 
 \subsection{\emph{knitr} \& R}
 
@@ -750,7 +750,7 @@ knit(input = "Example.Rmd", output = "Example.md")
 
 \noindent You use the same steps for all other knittable document types. Note that if you do not specify the output file, {\emph{knitr}} will determine what the file name and extension should be. In this example it would come up with the same name and location as we gave it.
 
-In this example, using the \texttt{knit} function only creates a Markdown file and not an HTML file, as clicking the RStudio {\tt{knit HTML}} did. Likewise, if you use {\tt{knit}} on a {\tt{.Rnw}} file you will only end up with a basic LaTeX {\tt{.tex}} file and not a compiled PDF. To convert the Markdown file into HTML you need to further run the {\tt{.md}} file through the {\tt{markdownToHTML}}\index{R function!markdownToHTML} command from the {\emph{markdown}} package, i.e.
+In this example, using the \texttt{knit} function only creates a Markdown file and not an HTML file, as clicking the RStudio {\tt{knit HTML}} did. Likewise, if you use {\tt{knit}} on a {\tt{.Rnw}} file you will only end up with a basic \LaTeX{} {\tt{.tex}} file and not a compiled PDF. To convert the Markdown file into HTML you need to further run the {\tt{.md}} file through the {\tt{markdownToHTML}}\index{R function!markdownToHTML} command from the {\emph{markdown}} package, i.e.
 
 <<Ch3MDtoHTML, eval=FALSE, tidy=FALSE, echo=TRUE>>=
 mardownToHTML(file = "Example.md", output = "Example.html")
@@ -762,7 +762,7 @@ mardownToHTML(file = "Example.md", output = "Example.html")
 knit2html(file = "Example.Rmd", output = "Example.html")
 @
 
-\noindent If we want to compile a {\tt{.tex}} file in R we run it through the {\tt{texi2pdf}}\index{R function!texi2pdf} function in the {\emph{tools}} package. This package will run both LaTeX and BibTeX to create a PDF with a bibliography (see Chapter \ref{LatexChapter} for more details on using BibTeX\index{BibTeX} for bibliographies). Here is a {\tt{texi2pdf}} example:
+\noindent If we want to compile a {\tt{.tex}} file in R we run it through the {\tt{texi2pdf}}\index{R function!texi2pdf} function in the {\emph{tools}} package. This package will run both \LaTeX{} and Bib\TeX{} to create a PDF with a bibliography (see Chapter \ref{LatexChapter} for more details on using Bib\TeX{}\index{Bib\TeX{}} for bibliographies). Here is a {\tt{texi2pdf}} example:
 
 <<CH3tex2pdf, echo=TRUE, eval=FALSE, tidy=FALSE>>=
 # Load tools package
@@ -847,11 +847,11 @@ We've covered a lot of ground in this chapter, including R basics, how to use RS
 
 \section*{Appendix: knitr and Lyx}\label{LyxAppendix}
 
-You may be more comfortable using a what-you-see-is-what-you-get\index{WYSIWYG} (WYSIWYG) editor, similar to Microsoft Word. Lyx\index{Lyx}\index{knitr!Lyx} is a WYSIWYG LaTeX editor that can be used with \emph{knitr}. I don't cover Lyx in detail in this book, but here is a little information to get you started.
+You may be more comfortable using a what-you-see-is-what-you-get\index{WYSIWYG} (WYSIWYG) editor, similar to Microsoft Word. Lyx\index{Lyx}\index{knitr!Lyx} is a WYSIWYG \LaTeX{} editor that can be used with \emph{knitr}. I don't cover Lyx in detail in this book, but here is a little information to get you started.
 
 \paragraph{Set Up}
 
-To set up Lyx so that it can compile \texttt{.Rnw} files, click \texttt{Document} in the menu bar then \texttt{Settings}. In the left-hand panel the second option is \texttt{Modules}. Click on \texttt{Modules} and select \texttt{Rnw (knitr)}. Click \texttt{Add} then \texttt{Ok}. Now, compile your LaTeX document in the normal Lyx way.
+To set up Lyx so that it can compile \texttt{.Rnw} files, click \texttt{Document} in the menu bar then \texttt{Settings}. In the left-hand panel the second option is \texttt{Modules}. Click on \texttt{Modules} and select \texttt{Rnw (knitr)}. Click \texttt{Add} then \texttt{Ok}. Now, compile your \LaTeX{} document in the normal Lyx way.
 
 \paragraph{Code Chunks}
 
